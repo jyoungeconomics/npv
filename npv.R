@@ -20,8 +20,10 @@ NPV <- function(outlay,pmt,scrap=NA,t,rate,words=F){
   #by default, the text description with accounting notation is turned off
   return(ifelse(words==T,
                 paste0("Net Present Value (NPV) = $",
-                       ifelse(NPV>0,round(NPV,2),
-                              paste0(gsub("-","(",round(NPV,2)),")"))),
+                       ifelse(NPV>0,format(round(NPV,2),nsmall = 2,big.mark = ","),
+                              paste0(gsub("-","(",
+                                          format(round(NPV,2),nsmall = 2,big.mark = ",")),
+                                     ")"))),
                 round(NPV,2)))
 }
 #Example: $25,000 investment pays $1,500/yr, salvaged at $2,500 at the end
